@@ -42,6 +42,9 @@ const findStudent = (req, res)=>{
     const validationId = databases.students.find((student)=>{
         return student.id === Number(id);
     }); 
+    if(Number(id) > databases.students.length){
+        return res.status(404).json({message: "This id don't exist"});
+    }
     if(!validationId){
         return res.status(404).json({message: "This id is invalid"});
     } 
